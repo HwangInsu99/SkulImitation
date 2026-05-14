@@ -1,4 +1,4 @@
-public class LittleBone : PlayerController
+public class LittleBone : Skul
 {
 
 }
