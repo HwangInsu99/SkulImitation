@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [System.Flags]
-    public enum EState
+    public enum EPState
     {
         None = 0,
         Dash = 1 << 0,
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private bool _canDash = true;
     private bool _dashBuffered = false;
     private float _originGravity;
-    private EState _state;
+    private EPState _state;
     private Coroutine _dashCo;
     private WaitForSeconds _dashTime = new WaitForSeconds(0.3f);
     private WaitForSeconds _dashCool = new WaitForSeconds(1.0f);
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
             Dash();
         }
 
-        if ((_state & EState.Attack) != 0 || (_state & EState.Dash) != 0)
+        if ((_state & EPState.Attack) != 0 || (_state & EPState.Dash) != 0)
         {
             return;
         }
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         }
 
         _skul.YSpeed(_rb.velocity.y);
-        if ((_state & EState.Air) != 0)
+        if ((_state & EPState.Air) != 0)
         {
             _skul.XSpeed(0);
             return;
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((_state & EState.Attack) != 0 || (_state & EState.Dash) != 0)
+        if ((_state & EPState.Attack) != 0 || (_state & EPState.Dash) != 0)
         {
             return;
         }
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        if ((_state & EState.Air) != 0)
+        if ((_state & EPState.Air) != 0)
         {
             _canJump = false;
             Vector2 velocity = _rb.velocity;
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Co_Dash()
     {
-        _state |= EState.Dash;
+        _state |= EPState.Dash;
         _skul.Dash(true);
         _skul.XSpeed(0);
         _skul.YSpeed(0);
@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
         _canDash = false;
         _rb.velocity = Vector2.zero;
         _rb.gravityScale = _originGravity;
-        _state &= ~EState.Dash;
+        _state &= ~EPState.Dash;
         yield return _dashCool;
         _canDash = true;
         _dashCo = null;
@@ -163,12 +163,12 @@ public class PlayerController : MonoBehaviour
     {
         if (IsGrounded())
         {
-            _state &= ~EState.Air;
+            _state &= ~EPState.Air;
             _canJump = true;
         }
         else
         {
-            _state |= EState.Air;
+            _state |= EPState.Air;
         }
     }
 

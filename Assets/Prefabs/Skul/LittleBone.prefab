@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6185667680765106375}
   - component: {fileID: 6326813032779980035}
   - component: {fileID: 9127882306098096106}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LittleBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

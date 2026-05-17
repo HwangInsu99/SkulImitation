@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6326813032779980035}
   - component: {fileID: 7215479358991173000}
   m_Layer: 8
-  m_Name: WereWolf
+  m_Name: SpearSkul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5eca77831415e384180d8c708ff8e2e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0f21e416644f6b44aa5d67929a324a85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 1818031821990628163}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9bd1e2caef5d34c499769002b5772f15, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6bc7b8bbe30c6114b8b19a06f638e546, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

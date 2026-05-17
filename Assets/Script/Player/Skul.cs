@@ -5,23 +5,23 @@ using UnityEngine;
 public abstract class Skul : MonoBehaviour
 {
 
-    [SerializeField] private SpriteRenderer _renderer;
-    [SerializeField] private Animator _animator;
-    [SerializeField] private string _paramSpeedX = "aSpeedX";
-    [SerializeField] private string _paramSpeedY = "aSpeedY";
-    [SerializeField] private string _paramDash = "bDash";
-    [SerializeField] private string _paramDashEnd = "tDashEnd";
-    [SerializeField] private string _paramAttack = "tAttack";
+    [SerializeField] protected SpriteRenderer _renderer;
+    [SerializeField] protected Animator _animator;
+    [SerializeField] protected string _paramSpeedX = "aSpeedX";
+    [SerializeField] protected string _paramSpeedY = "aSpeedY";
+    [SerializeField] protected string _paramDash = "bDash";
+    [SerializeField] protected string _paramDashEnd = "tDashEnd";
+    [SerializeField] protected string _paramAttack = "tAttack";
 
-    private int _hashSpeedX;
-    private int _hashSpeedY;
-    private int _hashDash;
-    private int _hashDashEnd;
-    private int _hashAttack;
+    protected int _hashSpeedX;
+    protected int _hashSpeedY;
+    protected int _hashDash;
+    protected int _hashDashEnd;
+    protected int _hashAttack;
 
     public bool Flip => _renderer.flipX;
 
-    private void Awake()
+    protected void Awake()
     {
         _hashSpeedX = Animator.StringToHash(_paramSpeedX);
         _hashSpeedY = Animator.StringToHash(_paramSpeedY);

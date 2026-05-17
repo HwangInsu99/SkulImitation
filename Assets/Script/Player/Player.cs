@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamagable
 {
     [SerializeField] private PlayerController _controller;
     [SerializeField] private List<Skul> _skulList;
@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private float _attack;
     private float _armor;
     private float _hp;
-    private float _maxhp;
+    private float _maxHp;
     private int _currentSkul = 0;
     private int _changeSkul = 0;
 
@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
 
         foreach (Skul skul in skuls)
         {
+            skul.gameObject.SetActive(false);
             _skulList.Add(skul);
         }
         if (_controller == null)
@@ -36,24 +37,25 @@ public class Player : MonoBehaviour
     void Start()
     {
         _controller.SetSkul(_skulList[_currentSkul]);
+        _skulList[_currentSkul].gameObject.SetActive(true);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            _changeSkul++;
-            if (_changeSkul >= _skulList.Count)
+            _changeSkul--;
+            if (_changeSkul < 0)
             {
-                _changeSkul = 0;
+                _changeSkul = _skulList.Count - 1;
             }
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            _changeSkul--;
-            if (_changeSkul < 0)
+            _changeSkul++;
+            if (_changeSkul >= _skulList.Count)
             {
-                _changeSkul = _skulList.Count -1;
+                _changeSkul = 0;
             }
         }
         if (Input.GetKeyDown(KeyCode.S))
@@ -68,5 +70,10 @@ public class Player : MonoBehaviour
             _controller.SetSkul(_skulList[_changeSkul]);
             _currentSkul = _changeSkul;
         }
+    }
+
+    public void Damaged(float damage)
+    {
+
     }
 }

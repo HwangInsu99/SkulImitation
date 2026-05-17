@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7613683755948503788}
   - component: {fileID: 6185667680765106375}
   - component: {fileID: 6326813032779980035}
-  - component: {fileID: 7215479358991173000}
+  - component: {fileID: 8572381970712052974}
   m_Layer: 8
-  m_Name: WereWolf
+  m_Name: Bomber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5eca77831415e384180d8c708ff8e2e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45e93466248374845aa82ba3d5263307, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 1818031821990628163}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9bd1e2caef5d34c499769002b5772f15, type: 2}
+  m_Controller: {fileID: 9100000, guid: 346722c9ad19e7d4e9fe5eb9ac878608, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -143,7 +143,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.5625}
   m_Size: {x: 0.75, y: 1.125}
   m_Direction: 0
---- !u!114 &7215479358991173000
+--- !u!114 &8572381970712052974
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1818031821990628163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e9f655973005c849ae8c4da6940461b, type: 3}
+  m_Script: {fileID: 11500000, guid: 810be8ea3366c6a4caaf565666dda01d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 7613683755948503788}
