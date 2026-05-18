@@ -46,7 +46,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         _dir = 1;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (_state == EEState.Attack)
         {
@@ -86,7 +86,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         }
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (_state == EEState.Patrol || _state == EEState.Chase)
         {
