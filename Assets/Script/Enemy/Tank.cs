@@ -1,8 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Knight : Enemy
+public class Tank : Enemy
 {
+    // 태클 만들어야함
     [SerializeField] private BoxCollider2D _attackCollider;
     private Vector3 _originAttackPos;
 

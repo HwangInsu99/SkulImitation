@@ -1,15 +1,14 @@
 using System.Collections;
 using UnityEngine;
 
-public class Knight : Enemy
+public class Archer : Enemy
 {
-    [SerializeField] private BoxCollider2D _attackCollider;
-    private Vector3 _originAttackPos;
+    // 화살 날려야함
+    [SerializeField] private GameObject _arrow;
 
     protected override void Start()
     {
         base.Start();
-        _originAttackPos = _attackCollider.transform.localPosition;
     }
 
     protected override void Update()
@@ -54,14 +53,7 @@ public class Knight : Enemy
     {
         yield return null;
         float animTime = _animator.GetCurrentAnimatorStateInfo(0).length;
-        float prepTime = 0.2f;
-        yield return new WaitForSeconds(prepTime);
-        Vector3 pos = _originAttackPos;
-        pos.x *= _dir;
-        _attackCollider.transform.localPosition = pos;
-        _attackCollider.enabled = true;
-        yield return new WaitForSeconds(Mathf.Max(0, animTime - prepTime));
-        _attackCollider.enabled = false;
+        yield return new WaitForSeconds(animTime);
         ChangeState(EEState.CoolDown);
     }
 
@@ -69,6 +61,5 @@ public class Knight : Enemy
     {
         base.Die();
         StopAllCoroutines();
-        _attackCollider.enabled = false;
     }
 }
