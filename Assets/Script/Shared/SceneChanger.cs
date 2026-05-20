@@ -7,7 +7,11 @@ public enum EScenes
 {
     Title,
     Catsle,
-
+    Stage_01,
+    Stage_02,
+    Stage_03,
+    Stage_04,
+    Stage_05,
 }
 
 public class SceneChanger : MonoBehaviour
@@ -31,6 +35,8 @@ public class SceneChanger : MonoBehaviour
     Coroutine coroutine = null;
 
     EScenes currentScene = EScenes.Title;
+
+    public event Action OnSceneChange;
 
     private void Awake()
     {
@@ -109,6 +115,7 @@ public class SceneChanger : MonoBehaviour
 
         //SoundManager.Instance.PlayBgm(stageRegistry.GetStageDataByID(NowScene()).BgmType);
         yield return new WaitForSecondsRealtime(0.5f);
+        OnSceneChange?.Invoke();
 
         faded.alpha = 0;
         faded.blocksRaycasts = false;

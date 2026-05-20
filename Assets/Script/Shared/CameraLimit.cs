@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour
+public class CameraLimit : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemy;
     [SerializeField] private string _playerTag = "Player";
+    [SerializeField] private BoxCollider2D _limit;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(_playerTag))
         {
-            IDamagable player = other.GetComponentInParent<IDamagable>();
-            if (player != null)
+            PlayerCamera cam = other.GetComponentInParent<PlayerCamera>();
+            if (cam != null)
             {
-                player.Damaged(_enemy.AttackDamage);
+                cam.SetBound(_limit);
             }
         }
     }

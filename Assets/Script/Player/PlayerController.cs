@@ -52,12 +52,28 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GroundCheck();
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if ((_state & EPState.Attack) != 0)
+            {
+
+            }
+            Attack();
+            _rb.velocity = Vector2.zero;
+        }
+
+        if ((_state & EPState.Attack) != 0)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Dash();
         }
 
-        if ((_state & EPState.Attack) != 0 || (_state & EPState.Dash) != 0)
+        if ((_state & EPState.Dash) != 0)
         {
             return;
         }
@@ -131,6 +147,15 @@ public class PlayerController : MonoBehaviour
         _dashCo = StartCoroutine(Co_Dash());
     }
 
+    void Attack()
+    {
+        _state |= EPState.Attack;
+        Vector2 velocity = _rb.velocity;
+        velocity.x = 0f;
+        _rb.velocity = velocity;
+        _skul.Attack();
+    }
+
     IEnumerator Co_Dash()
     {
         _state |= EPState.Dash;
@@ -180,5 +205,14 @@ public class PlayerController : MonoBehaviour
     public void SetSkul(Skul target)
     {
         _skul = target;
+    }
+
+    public void AttackEnd()
+    {
+        if ((_state & EPState.Attack) == 0)
+        {
+            return;
+        }
+        _state &= ~EPState.Attack;
     }
 }

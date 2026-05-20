@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
@@ -7,7 +5,6 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] Camera _cam;
     [SerializeField] Transform _player;
     [SerializeField] Vector3 _cameraOffset = new Vector3 (0, 3, -10);
-    [SerializeField] BoxCollider2D _limit;
 
     private float _maxX;
     private float _minX;
@@ -16,16 +13,20 @@ public class PlayerCamera : MonoBehaviour
 
     private void Awake()
     {
-        _cam = Camera.main;
-    }
-
-    private void Start()
-    {
-        SetBound(_limit);
+        SetCam();
     }
 
     void LateUpdate()
     {
+        if (_cam == null)
+        {
+            _cam = Camera.main;
+
+            if (_cam == null)
+            {
+                return;
+            }
+        }
         LookPlayer();
     }
 
@@ -49,5 +50,10 @@ public class PlayerCamera : MonoBehaviour
         _minX = bounds.min.x;
         _maxY = bounds.max.y;
         _minY = bounds.min.y;
+    }
+
+    void SetCam()
+    {
+        _cam = Camera.main;
     }
 }

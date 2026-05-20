@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamagable
 {
+    public static Player Instance { get; private set; }
+
     [SerializeField] private PlayerController _controller;
     [SerializeField] private List<Skul> _skulList;
 
     private float _speed = 5f;
     private float _dashSpeed = 15f;
-    private float _attack;
+    private float _attack = 5f;
     private float _armor;
     private float _hp;
     private float _maxHp;
@@ -18,9 +20,19 @@ public class Player : MonoBehaviour, IDamagable
 
     public float Speed => _speed;
     public float DashSpeed => _dashSpeed;
+    public float Attack => _attack;
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(this.gameObject);
+
         Skul[] skuls = GetComponentsInChildren<Skul>(true);
 
         foreach (Skul skul in skuls)
@@ -34,10 +46,20 @@ public class Player : MonoBehaviour, IDamagable
         }
     }
 
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
+        SceneChanger.Instance.OnSceneChange -= SceneChange;
+    }
+
     void Start()
     {
         _controller.SetSkul(_skulList[_currentSkul]);
         _skulList[_currentSkul].gameObject.SetActive(true);
+        SceneChanger.Instance.OnSceneChange += SceneChange;
     }
 
     void Update()
@@ -60,20 +82,30 @@ public class Player : MonoBehaviour, IDamagable
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if (_changeSkul == _currentSkul)
-            {
-                return;
-            }
-            _skulList[_currentSkul].gameObject.SetActive(false);
-            _skulList[_changeSkul].gameObject.SetActive(true);
-            _skulList[_changeSkul].SkulChange(_skulList[_currentSkul].Flip);
-            _controller.SetSkul(_skulList[_changeSkul]);
-            _currentSkul = _changeSkul;
+            SkulChange();
         }
+    }
+
+    void SkulChange()
+    {
+        if (_changeSkul == _currentSkul)
+        {
+            return;
+        }
+        _skulList[_currentSkul].gameObject.SetActive(false);
+        _skulList[_changeSkul].gameObject.SetActive(true);
+        _skulList[_changeSkul].SkulChange(_skulList[_currentSkul].Flip);
+        _controller.SetSkul(_skulList[_changeSkul]);
+        _currentSkul = _changeSkul;
     }
 
     public void Damaged(float damage)
     {
+        Debug.Log("공격받음");
+    }
 
+    void SceneChange()
+    {
+        transform.position = new Vector3(-9, -2, 0);        
     }
 }

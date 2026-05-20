@@ -12,12 +12,15 @@ public abstract class Skul : MonoBehaviour
     [SerializeField] protected string _paramDash = "bDash";
     [SerializeField] protected string _paramDashEnd = "tDashEnd";
     [SerializeField] protected string _paramAttack = "tAttack";
+    [SerializeField] protected PlayerController _controller;
 
     protected int _hashSpeedX;
     protected int _hashSpeedY;
     protected int _hashDash;
     protected int _hashDashEnd;
     protected int _hashAttack;
+    protected int _attackCombo;
+    protected bool _attackBuffered;
 
     public bool Flip => _renderer.flipX;
 
@@ -28,15 +31,10 @@ public abstract class Skul : MonoBehaviour
         _hashDash = Animator.StringToHash(_paramDash);
         _hashDashEnd = Animator.StringToHash(_paramDashEnd);
         _hashAttack = Animator.StringToHash(_paramAttack);
-    }
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
+        if (_controller == null)
+        {
+            _controller = GetComponentInParent<PlayerController>();
+        }
     }
 
     public void YSpeed(float speed)
@@ -64,7 +62,7 @@ public abstract class Skul : MonoBehaviour
         _animator.SetTrigger(_hashDashEnd);
     }
 
-    public void Attack()
+    public virtual void Attack()
     {
         _animator.SetTrigger(_hashAttack);
     }
@@ -73,5 +71,10 @@ public abstract class Skul : MonoBehaviour
     public void SkulChange(bool flip)
     {
         _renderer.flipX = flip;
+    }
+
+    public void EndAttack()
+    {
+        _controller.AttackEnd();
     }
 }

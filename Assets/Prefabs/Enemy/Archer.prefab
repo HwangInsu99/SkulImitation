@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8572829060693535891}
   - component: {fileID: 5496685649668577708}
   - component: {fileID: 8558848999829579182}
-  - component: {fileID: 2051990068957445826}
+  - component: {fileID: 6306061179639481303}
   m_Layer: 6
   m_Name: Archer
   m_TagString: Untagged
@@ -35,6 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8084663342547283667}
+  - {fileID: 6058968235668808164}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2965893942262077267
@@ -136,7 +137,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8558848999829579182
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -169,7 +170,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.859375}
+  m_Offset: {x: 0, y: 0.8}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -180,9 +181,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0625, y: 1.71875}
+  m_Size: {x: 1.0625, y: 1.6}
   m_EdgeRadius: 0
---- !u!114 &2051990068957445826
+--- !u!114 &6306061179639481303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,7 +192,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3282219395885442651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dffddc3750e69f74a88634296ae3bfc3, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d40ef4dabdda4442a4c51f16d516816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
@@ -203,6 +204,42 @@ MonoBehaviour:
   _paramAttack: tAttack
   _paramDie: bDie
   _state: 0
+  _attackCool: 4
+  _attackDist: 5
+  _attack: 4
+  _arrow: {fileID: 2986648838699202122, guid: c0057eed9c4d11442869d82902af46ee, type: 3}
+  _firePoint: {fileID: 6058968235668808164}
+--- !u!1 &3856682338167048317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6058968235668808164}
+  m_Layer: 6
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6058968235668808164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3856682338167048317}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.75, y: 0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 710769258231421000}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5314278770701885729
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,5 +320,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdb4773d10f15a44f85e5abebb075069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 2051990068957445826}
+  _enemy: {fileID: 6306061179639481303}
   _playerTag: Player

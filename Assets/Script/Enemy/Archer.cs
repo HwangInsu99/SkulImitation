@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class Archer : Enemy
 {
-    // 화살 날려야함
-    [SerializeField] private GameObject _arrow;
+    [SerializeField] private EnemyProjectile _arrow;
+    [SerializeField] private Transform _firePoint;
+    private Vector3 _originFirePos;
 
     protected override void Start()
     {
         base.Start();
+        _originFirePos = _firePoint.localPosition;
     }
 
     protected override void Update()
@@ -46,20 +48,21 @@ public class Archer : Enemy
         _coolTime = _attackCool;
         ChangeState(EEState.Attack);
         _animator.SetTrigger(_hashAttack);
-        StartCoroutine(Co_Attack());
     }
 
-    IEnumerator Co_Attack()
-    {
-        yield return null;
-        float animTime = _animator.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(animTime);
-        ChangeState(EEState.CoolDown);
-    }
 
     protected override void Die()
     {
         base.Die();
-        StopAllCoroutines();
+    }
+
+    public void AttackEnd()
+    {
+        Vector3 pos = _originFirePos;
+        pos.x *= _dir;
+        _firePoint.localPosition = pos;
+        EnemyProjectile arrow = Instantiate<EnemyProjectile>(_arrow, _firePoint.position, Quaternion.identity);
+        arrow.SetProjectile(_attack, _dir);
+        ChangeState(EEState.CoolDown);
     }
 }

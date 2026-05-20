@@ -15,3 +15,8 @@ MonoBehaviour:
   stages:
   - {fileID: 11400000, guid: 595db90a062259d4dbf8f164d000dde4, type: 2}
   - {fileID: 11400000, guid: 9805d33672bbc3445b926c0762e9cc67, type: 2}
+  - {fileID: 11400000, guid: c3ed9527034f96a4fa4bb988a7197237, type: 2}
+  - {fileID: 11400000, guid: 7e4237f2bbd88b64e8d43a7da2e92d1c, type: 2}
+  - {fileID: 11400000, guid: 2f8c8a51d799e8a4fa60db2cf3080ed8, type: 2}
+  - {fileID: 11400000, guid: 1f99b5a1a5bcb5e4a83feecc90a50560, type: 2}
+  - {fileID: 11400000, guid: 1934b518d53c9904c9a19faf6e1d6502, type: 2}
