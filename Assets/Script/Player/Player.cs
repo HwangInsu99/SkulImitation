@@ -82,21 +82,24 @@ public class Player : MonoBehaviour, IDamagable
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            SkulChange();
+            SkulChange(_changeSkul);
         }
     }
 
-    void SkulChange()
+    public void SkulChange(int change)
     {
-        if (_changeSkul == _currentSkul)
+        if (change == _currentSkul || !_controller.CanChange())
         {
             return;
         }
+        _skulList[_currentSkul].ChangeSkul();
         _skulList[_currentSkul].gameObject.SetActive(false);
-        _skulList[_changeSkul].gameObject.SetActive(true);
-        _skulList[_changeSkul].SkulChange(_skulList[_currentSkul].Flip);
-        _controller.SetSkul(_skulList[_changeSkul]);
-        _currentSkul = _changeSkul;
+        _skulList[change].gameObject.SetActive(true);
+        _skulList[change].SkulFlip(_skulList[_currentSkul].Flip);
+        _controller.SetSkul(_skulList[change]);
+        _currentSkul = change;
+        // 폭탄병의 자폭으로 인해 교체되는 경우가 있으므로 초기화
+        _changeSkul = change;
     }
 
     public void Damaged(float damage)

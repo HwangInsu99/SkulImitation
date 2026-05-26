@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
         Dash = 1 << 0,
         Attack = 1 << 1,
         Air = 1 << 2,
+        JumpAttack = 1 << 3,
+        Skill = 1 << 4,
     }
 
     [SerializeField] private Player _player;
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Skul _skul;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private string _groundLayerString;
+    [SerializeField]private EPState _state;
 
     private float _moveX;
     private float _jumpPower = 8f;
@@ -25,12 +28,12 @@ public class PlayerController : MonoBehaviour
     private bool _canDash = true;
     private bool _dashBuffered = false;
     private float _originGravity;
-    private EPState _state;
     private Coroutine _dashCo;
     private WaitForSeconds _dashTime = new WaitForSeconds(0.3f);
     private WaitForSeconds _dashCool = new WaitForSeconds(1.0f);
+    [SerializeField]private bool _canSkill = true;
 
-
+    public Rigidbody2D Rb => _rb;
     private void Awake()
     {
         _groundLayer = LayerMask.GetMask(_groundLayerString);
@@ -52,32 +55,42 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GroundCheck();
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            if ((_state & EPState.Attack) != 0)
-            {
-
-            }
-            Attack();
-            _rb.velocity = Vector2.zero;
-        }
-
-        if ((_state & EPState.Attack) != 0)
-        {
-            return;
-        }
+        _moveX = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Dash();
         }
 
-        if ((_state & EPState.Dash) != 0)
+        if ((_state & EPState.Dash) != 0 || (_state & EPState.Skill) != 0)
         {
             return;
         }
-        _moveX = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Skill();
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if ((_state & EPState.Air) != 0)
+            {
+                JumpAttack();
+                return;
+            }
+            if ((_state & EPState.Attack) != 0)
+            {
+                _skul.Combo();
+                return;
+            }
+            Attack();
+        }
+
+        if ((_state & EPState.Attack) != 0)
+        {
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -87,20 +100,23 @@ public class PlayerController : MonoBehaviour
         if (_moveX != 0)
         {
             _skul.Fliped(_moveX < 0);
+            _skul.Walk(true);
+        }
+        else
+        {
+            _skul.Walk(false);
         }
 
-        _skul.YSpeed(_rb.velocity.y);
         if ((_state & EPState.Air) != 0)
         {
-            _skul.XSpeed(0);
-            return;
+            _skul.Walk(false);
         }
-        _skul.XSpeed(Mathf.Abs(_rb.velocity.x));
+        _skul.YSpeed(_rb.velocity.y);
     }
 
     private void FixedUpdate()
     {
-        if ((_state & EPState.Attack) != 0 || (_state & EPState.Dash) != 0)
+        if ((_state & EPState.Attack) != 0 || (_state & EPState.Dash) != 0 || (_state & EPState.Skill) != 0)
         {
             return;
         }
@@ -133,6 +149,11 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
+        if((_state & EPState.Attack) != 0 || (_state & EPState.JumpAttack) != 0 || (_state & EPState.Skill) != 0)
+        {
+            return;
+        }
+
         if (!_canDash)
         {
             return;
@@ -150,17 +171,36 @@ public class PlayerController : MonoBehaviour
     void Attack()
     {
         _state |= EPState.Attack;
-        Vector2 velocity = _rb.velocity;
-        velocity.x = 0f;
-        _rb.velocity = velocity;
+        _rb.velocity = Vector2.zero;
+        _skul.Walk(false);
         _skul.Attack();
+    }
+
+    void JumpAttack()
+    {
+        _state |= EPState.JumpAttack;
+        _skul.Attack();
+    }
+
+    public void Skill()
+    {
+        if (!_canSkill)
+        {
+            return;
+        }
+        _state |= EPState.Skill;
+        _rb.gravityScale = 0f;
+        _rb.velocity = Vector2.zero;
+        _canSkill = false;
+        _skul.Walk(false);
+        _skul.Skill();
     }
 
     IEnumerator Co_Dash()
     {
         _state |= EPState.Dash;
         _skul.Dash(true);
-        _skul.XSpeed(0);
+        _skul.Walk(false);
         _skul.YSpeed(0);
         _rb.gravityScale = 0f;
         float dir = _skul.Flip ? -1 : 1;
@@ -207,12 +247,37 @@ public class PlayerController : MonoBehaviour
         _skul = target;
     }
 
-    public void AttackEnd()
+    public void LockEnd()
     {
-        if ((_state & EPState.Attack) == 0)
+        if ((_state & EPState.Attack) != 0)
         {
-            return;
+            _state &= ~EPState.Attack;
         }
-        _state &= ~EPState.Attack;
+        if ((_state & EPState.Skill) != 0)
+        {
+            _state &= ~EPState.Skill;
+            _rb.gravityScale = _originGravity;
+        }
+        if ((_state & EPState.JumpAttack) != 0)
+        {
+            _state &= ~EPState.JumpAttack;
+        }
+    }
+
+    public bool CanChange()
+    {
+        if ((_state & EPState.Attack) != 0 || (_state & EPState.Dash) != 0 || (_state & EPState.JumpAttack) != 0 || (_state & EPState.Skill) != 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public void SkillReady(bool ready)
+    {
+        _canSkill = ready;
     }
 }
