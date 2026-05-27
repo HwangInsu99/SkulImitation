@@ -6,16 +6,16 @@ using UnityEngine;
 public class StageRegistry_SO : ScriptableObject
 {
     [SerializeField]
-    private List<StageData_SO> stages = new List<StageData_SO>();
+    private List<StageData_SO> _stages = new List<StageData_SO>();
 
-    public IReadOnlyList<StageData_SO> Stages => stages;
+    public IReadOnlyList<StageData_SO> Stages => _stages;
 
-    private Dictionary<string, StageData_SO> dataDic = new Dictionary<string, StageData_SO>();
-    private Dictionary<EScenes, string> sceneDic = new Dictionary<EScenes, string>();
+    private Dictionary<string, StageData_SO> _dataDic = new Dictionary<string, StageData_SO>();
+    private Dictionary<EScenes, string> _sceneDic = new Dictionary<EScenes, string>();
         
     void NullCheck()
     {
-        if (dataDic != null && dataDic.Count != 0)
+        if (_dataDic != null && _dataDic.Count != 0)
         {
             return;
         }
@@ -25,21 +25,21 @@ public class StageRegistry_SO : ScriptableObject
 
     public void MakeDic()
     {
-        dataDic.Clear();
-        sceneDic.Clear();
+        _dataDic.Clear();
+        _sceneDic.Clear();
 
-        for (int i = 0; i < stages.Count; i++)
+        for (int i = 0; i < _stages.Count; i++)
         {
-            dataDic.Add(stages[i].StageID, stages[i]);
-            sceneDic.Add(stages[i].SceneEnum, stages[i].StageID);
+            _dataDic.Add(_stages[i].StageID, _stages[i]);
+            _sceneDic.Add(_stages[i].SceneEnum, _stages[i].StageID);
         }
     }
 
-    public StageData_SO GetStageDataByID(string _ID)
+    public StageData_SO GetStageDataByID(string ID)
     {
         NullCheck();
 
-        if (dataDic.TryGetValue(_ID, out StageData_SO data))
+        if (_dataDic.TryGetValue(ID, out StageData_SO data))
         {
             return data;
         }
@@ -48,11 +48,11 @@ public class StageRegistry_SO : ScriptableObject
         return null;
     }
 
-    public string GetStageDataByEnum(EScenes _enum)
+    public string GetStageDataByEnum(EScenes Enum)
     {
         NullCheck();
 
-        if (sceneDic.TryGetValue(_enum, out string data))
+        if (_sceneDic.TryGetValue(Enum, out string data))
         {
             return data;
         }

@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private EPState _state;
 
     private float _moveX;
-    private float _jumpPower = 8f;
+    [SerializeField] private float _jumpPower = 8f;
     private bool _canJump = true;
     private bool _canDash = true;
     private bool _dashBuffered = false;
@@ -99,8 +99,11 @@ public class PlayerController : MonoBehaviour
 
         if (_moveX != 0)
         {
-            _skul.Fliped(_moveX < 0);
-            _skul.Walk(true);
+            if ((_state & EPState.JumpAttack) == 0)
+            {
+                _skul.Fliped(_moveX < 0);
+                _skul.Walk(true);
+            }
         }
         else
         {

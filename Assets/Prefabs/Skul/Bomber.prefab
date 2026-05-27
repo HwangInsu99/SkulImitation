@@ -74,10 +74,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2039581851
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 45e93466248374845aa82ba3d5263307, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d640389d524f9f543bdcfa14570a447f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   _maxCombo: 1
   _skillCoolTime: 30
   _skillCollider: {fileID: 8771124518645264238}
-  _bombTimer: 10
+  _bombTimerMax: 10
 --- !u!1 &3966468500763948184
 GameObject:
   m_ObjectHideFlags: 0

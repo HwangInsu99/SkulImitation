@@ -65,6 +65,10 @@ public abstract class Skul : MonoBehaviour
         {
             ReduceCool(Time.time);
         }
+        else if (_skillCool <= 0)
+        {
+            _controller.SkillReady(true);
+        }
     }
 
     protected virtual void OnDisable()

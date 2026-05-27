@@ -9,8 +9,8 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private PlayerController _controller;
     [SerializeField] private List<Skul> _skulList;
 
-    private float _speed = 5f;
-    private float _dashSpeed = 15f;
+    [SerializeField] private float _speed = 5f;
+    [SerializeField] private float _dashSpeed = 15f;
     private float _attack = 5f;
     private float _armor;
     private float _hp;

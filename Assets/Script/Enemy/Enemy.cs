@@ -43,7 +43,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     public Transform Target => _target;
     public float AttackDamage => _attack;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _hashSpeedX = Animator.StringToHash(_paramSpeedX);
         _hashAttack = Animator.StringToHash(_paramAttack);
@@ -128,9 +128,12 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         _coolTime -= Time.deltaTime;
         if (_coolTime <= 0)
         {
+            _coolTime = 0;
             if (_target != null)
             {
                 ChangeState(EEState.Chase);
+                _dir = Mathf.Sign(_target.position.x - transform.position.x);
+                _renderer.flipX = _dir < 0;
             }
             else
             {

@@ -10,8 +10,7 @@ public class StageChanger : MonoBehaviour
     {
         if (other.CompareTag(_playerTag))
         {
-            //EScenes stage = (EScenes)Random.Range((int)EScenes.Stage_01, (int)EScenes.Stage_05 +1);
-            EScenes stage = EScenes.Stage_01;
+            EScenes stage = (EScenes)Random.Range((int)EScenes.Stage_01, (int)EScenes.Stage_03 +1);
             SceneChanger.Instance.MoveScene(stage);
         }
     }

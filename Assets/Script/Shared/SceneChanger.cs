@@ -34,7 +34,7 @@ public class SceneChanger : MonoBehaviour
 
     Coroutine coroutine = null;
 
-    EScenes currentScene = EScenes.Title;
+    [SerializeField] private EScenes currentScene = EScenes.Title;
 
     public event Action OnSceneChange;
 
@@ -48,6 +48,11 @@ public class SceneChanger : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Start()
+    {
+        SoundManager.Instance.PlayBgm(stageRegistry.GetStageDataByID(NowScene()).SceneBGM);
     }
 
     public void MoveScene(EScenes target)
@@ -113,7 +118,7 @@ public class SceneChanger : MonoBehaviour
 
         op.allowSceneActivation = true;
 
-        //SoundManager.Instance.PlayBgm(stageRegistry.GetStageDataByID(NowScene()).BgmType);
+        SoundManager.Instance.PlayBgm(stageRegistry.GetStageDataByID(NowScene()).SceneBGM);
         yield return new WaitForSecondsRealtime(0.5f);
         OnSceneChange?.Invoke();
 
