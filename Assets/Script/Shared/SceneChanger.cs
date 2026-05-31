@@ -12,6 +12,7 @@ public enum EScenes
     Stage_03,
     Stage_04,
     Stage_05,
+    BossStage,
 }
 
 public class SceneChanger : MonoBehaviour
@@ -53,6 +54,7 @@ public class SceneChanger : MonoBehaviour
     private void Start()
     {
         SoundManager.Instance.PlayBgm(stageRegistry.GetStageDataByID(NowScene()).SceneBGM);
+        currentScene = stageRegistry.GetStageDataByID(SceneManager.GetActiveScene().name).SceneEnum;
     }
 
     public void MoveScene(EScenes target)
@@ -145,5 +147,20 @@ public class SceneChanger : MonoBehaviour
         }
 
         return nowScene;
+    }
+
+    // 캐슬, 보스, 타이틀은 사용하지 않고 바로 무브씬
+    public void MoveNormalStage()
+    {
+        EScenes stage;
+        while (true)
+        {
+            stage = (EScenes)UnityEngine.Random.Range((int)EScenes.Stage_01, (int)EScenes.Stage_03 + 1);
+            if (stage != currentScene)
+            {
+                break;
+            }
+        }        
+        MoveScene(stage);
     }
 }

@@ -54,7 +54,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: 0dfd60a12b75bae44b0692b98f561599, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -80,6 +80,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controller: {fileID: 3273153337860394457}
   _skulList: []
+  _speed: 5
+  _dashSpeed: 15
 --- !u!114 &3273153337860394457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +102,7 @@ MonoBehaviour:
     m_Bits: 8
   _groundLayerString: Ground
   _state: 0
+  _jumpPower: 11
   _canSkill: 1
 --- !u!114 &3567690622233663500
 MonoBehaviour:

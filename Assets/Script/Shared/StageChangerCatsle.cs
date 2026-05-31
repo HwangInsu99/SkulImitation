@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageChanger : MonoBehaviour
+public class StageChangerCatsle : MonoBehaviour
 {
     [SerializeField] private string _playerTag = "Player";
 
@@ -10,8 +10,7 @@ public class StageChanger : MonoBehaviour
     {
         if (other.CompareTag(_playerTag))
         {
-            EScenes stage = (EScenes)Random.Range((int)EScenes.Stage_01, (int)EScenes.Stage_03 +1);
-            SceneChanger.Instance.MoveScene(stage);
+            SceneChanger.Instance.MoveNormalStage();
         }
     }
 }

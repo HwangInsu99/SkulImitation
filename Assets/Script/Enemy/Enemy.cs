@@ -56,6 +56,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         _dir = 1;
         _missDist = _detectArea.radius * transform.lossyScale.x;
         ChangeState(EEState.Idle);
+        StageManager.Instance.IncreaseEnemy();
     }
 
     protected virtual void Update()
@@ -190,6 +191,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         _rb.simulated = false;
         _detectArea.enabled = false;
         _target = null;
+        StageManager.Instance.DecreaseEnemy();
     }
 
     protected void Disappear()

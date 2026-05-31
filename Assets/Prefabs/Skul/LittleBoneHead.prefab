@@ -174,7 +174,7 @@ MonoBehaviour:
   _playerTag: Player
   _skul: {fileID: 0}
   _rb: {fileID: 6970711759640319258}
-  _speed: 8
+  _speed: 10
   _attackMultiply: 1.5
   _maxFly: 3
   _renderer: {fileID: 681754522619550535}

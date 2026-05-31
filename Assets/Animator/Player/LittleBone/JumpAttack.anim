@@ -22,13 +22,13 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 21300000, guid: 5605d82074e5960429d098d750fe477d, type: 3}
-    - time: 0.15
+    - time: 0.06666667
       value: {fileID: 21300000, guid: 2e3c6ae8513def540b0f3f05828a7df5, type: 3}
-    - time: 0.43333334
+    - time: 0.18333334
       value: {fileID: 21300000, guid: d524335d147913c47b913790cfe3f9cb, type: 3}
-    - time: 0.5833333
+    - time: 0.26666668
       value: {fileID: 21300000, guid: 29517d0996948c349b572a631c3b57e6, type: 3}
-    - time: 0.75
+    - time: 0.33333334
       value: {fileID: 21300000, guid: 29517d0996948c349b572a631c3b57e6, type: 3}
     attribute: m_Sprite
     path: 
@@ -62,7 +62,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.76666665
+    m_StopTime: 0.35000002
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -82,21 +82,21 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.16666667
+  - time: 0.06666667
     functionName: JumpAtkStart
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5833333
+  - time: 0.26666668
     functionName: JumpAtkEnd
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.75
+  - time: 0.33333334
     functionName: LockEnd
     data: 
     objectReferenceParameter: {fileID: 0}
