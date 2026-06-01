@@ -16,6 +16,11 @@ public abstract class Skul : MonoBehaviour
     [SerializeField] protected PlayerController _controller;
     [SerializeField] protected int _maxCombo = 2;
     [SerializeField] protected float _skillCoolTime;
+    [Header("1보다 크면 받는 데미지 감소")]
+    [SerializeField] protected float _skulArmorMul;
+    [SerializeField] protected Sprite _headIcon;
+    [SerializeField] protected Sprite _skillIcon;
+
 
     protected int _hashSpeedY;
     protected int _hashDash;
@@ -29,6 +34,11 @@ public abstract class Skul : MonoBehaviour
     protected float _changeTime;
 
     public bool Flip => _renderer.flipX;
+    public float SkulArmor => _skulArmorMul;
+    public float SkillCool => _skillCool;
+    public float SkillCoolMax => _skillCoolTime;
+    public Sprite HeadIcon => _headIcon;
+    public Sprite SkillIcon => _skillIcon;
 
     protected virtual void Awake()
     {

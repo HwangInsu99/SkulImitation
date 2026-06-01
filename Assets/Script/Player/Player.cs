@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,26 +13,32 @@ public class Player : MonoBehaviour, IDamagable
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _dashSpeed = 15f;
     private float _attack = 5f;
-    private float _armor;
+    private float _armor = 5;
     private float _hp;
-    private float _maxHp;
+    private float _maxHp = 100;
     private int _currentSkul = 0;
     private int _changeSkul = 0;
 
     public float Speed => _speed;
     public float DashSpeed => _dashSpeed;
     public float Attack => _attack;
+    public float CoolTime => _skulList[_currentSkul].SkillCool;
+    public float CoolTimeMax => _skulList[_currentSkul].SkillCoolMax;
+    public Sprite HeadIcon => _skulList[_currentSkul].HeadIcon;
+    public Sprite SkillIcon => _skulList[_currentSkul].SkillIcon;
+    public float MaxHp => _maxHp;
+    public event Action<float> HpChange;
 
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
 
         Instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
 
         Skul[] skuls = GetComponentsInChildren<Skul>(true);
 
@@ -57,6 +64,7 @@ public class Player : MonoBehaviour, IDamagable
 
     void Start()
     {
+        _hp = _maxHp;
         _controller.SetSkul(_skulList[_currentSkul]);
         _skulList[_currentSkul].gameObject.SetActive(true);
         SceneChanger.Instance.OnSceneChange += SceneChange;
@@ -104,11 +112,41 @@ public class Player : MonoBehaviour, IDamagable
 
     public void Damaged(float damage)
     {
-        Debug.Log("공격받음");
+        _hp -= damage - (_armor * _skulList[_currentSkul].SkulArmor);
     }
 
     void SceneChange()
     {
         transform.position = new Vector3(-9, -2, 0);        
+    }
+
+    public void ChangeStat(EPlayerStat stat, float value)
+    {
+        switch (stat)
+        {
+            case EPlayerStat.Hp:
+                _hp += value;
+                if (_hp >= _maxHp)
+                {
+                    _hp = _maxHp;
+                }
+                break;
+            case EPlayerStat.Attack:
+                _attack *= value;
+                break;
+            case EPlayerStat.Armor:
+                _armor *= value;
+                break;
+            case EPlayerStat.Speed:
+                _speed *= value;
+                _dashSpeed *= value;
+                break;
+        }
+    }
+
+    public void AddHead(Skul newHead)
+    {
+        _skulList.Add(newHead);
+        newHead.gameObject.SetActive(false);
     }
 }

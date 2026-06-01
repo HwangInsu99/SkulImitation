@@ -169,6 +169,9 @@ MonoBehaviour:
   _controller: {fileID: 0}
   _maxCombo: 2
   _skillCoolTime: 8
+  _skulArmorMul: 1.1
+  _headIcon: {fileID: 21300000, guid: c6f53aa5373ed27448214afd190a010f, type: 3}
+  _skillIcon: {fileID: 21300000, guid: 631bc5dc14338804a82a0797113379f0, type: 3}
   _attackCollider: {fileID: 2765812243839391670}
   _jumpAtkCollider: {fileID: 1485296335387860182}
   _skillCollider: {fileID: 5250404223805752195}

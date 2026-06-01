@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Skul _skul;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private string _groundLayerString;
-    [SerializeField]private EPState _state;
+    [SerializeField] private EPState _state;
 
     private float _moveX;
     [SerializeField] private float _jumpPower = 8f;
