@@ -79,7 +79,7 @@ public class LittleBoneHead : MonoBehaviour
             return;
         }
         _isReturn = true;
-        _skul.CollectHead();
+        _skul.CollectProjectile();
     }
 
     private void OnCollisionEnter2D(Collision2D other)

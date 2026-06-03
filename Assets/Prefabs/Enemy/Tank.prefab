@@ -330,6 +330,7 @@ MonoBehaviour:
   _attackCool: 5
   _attackDist: 3
   _attack: 6
+  _maxHp: 5
   _attackCollider: {fileID: 6811412030364729550}
   _tackle: {fileID: 619602651858732226}
   _tackleMovePower: 10

@@ -170,8 +170,8 @@ MonoBehaviour:
   _maxCombo: 2
   _skillCoolTime: 8
   _skulArmorMul: 1.1
-  _headIcon: {fileID: 21300000, guid: c6f53aa5373ed27448214afd190a010f, type: 3}
-  _skillIcon: {fileID: 21300000, guid: 631bc5dc14338804a82a0797113379f0, type: 3}
+  _headIcon: {fileID: 21300000, guid: f55c87b4750d45749b38129e61c7db78, type: 3}
+  _skillIcon: {fileID: 21300000, guid: 0ee508fbe2685a64b8a46493bc5a2226, type: 3}
   _attackCollider: {fileID: 2765812243839391670}
   _jumpAtkCollider: {fileID: 1485296335387860182}
   _skillCollider: {fileID: 5250404223805752195}
@@ -237,7 +237,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -328,7 +328,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

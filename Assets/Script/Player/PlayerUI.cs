@@ -14,7 +14,6 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Image _hpImage;
     [SerializeField] private TMP_Text _coolText;
     [SerializeField] private Image _coolImage;
-    [SerializeField] private GameObject _coolPanel;
     [SerializeField] private Player _player;
 
     private float _cool;
@@ -55,17 +54,17 @@ public class PlayerUI : MonoBehaviour
         _cool = _player.CoolTime;
         if (_cool <= 0)
         {
-            if (_coolPanel.activeSelf)
+            if (_coolImage.gameObject.activeSelf)
             {
-                _coolPanel.SetActive(false);
+                _coolImage.gameObject.SetActive(false);
             }
             return;
         }
         else
         {
-            if (!_coolPanel.activeSelf)
+            if (!_coolImage.gameObject.activeSelf)
             {
-                _coolPanel.SetActive(true);
+                _coolImage.gameObject.SetActive(true);
             }
         }
 
@@ -75,48 +74,18 @@ public class PlayerUI : MonoBehaviour
 
     public void HeadChange()
     {
-        StartCoroutine(CO_HeadChange());
-    }
-
-    IEnumerator CO_HeadChange()
-    {
-        float time = 0f;
-        float duration = 0.2f;
-
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-
-            float y = Mathf.Lerp(0f, 90f, time / duration);
-            _headIcon.rectTransform.localEulerAngles = new Vector3 (0f, y, 0f);
-
-            yield return null;
-        }
-        _headIcon.rectTransform.localEulerAngles = new Vector3(0f, 270f, 0f);
-
-        _headIcon.sprite = _player.HeadIcon;
         _skiilIcon.sprite = _player.SkillIcon;
-
-        time = 0f;
-
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-
-            float y = Mathf.Lerp(270f, 360f, time / duration);
-            _headIcon.rectTransform.localEulerAngles = new Vector3(0f, y, 0f);
-
-            yield return null;
-        }
-
-        _headIcon.rectTransform.localEulerAngles = Vector3.zero;
     }
 
-    /*
-    IEnumerator CO_HeadChange()
+    public void ShowNextHead()
+    {
+        StartCoroutine(CO_Show());
+    }
+   
+    IEnumerator CO_Show()
     {
         float time = 0f;
-        float duration = 0.2f;
+        float duration = 0.1f;
 
         RectTransform rect = _headIcon.rectTransform;
 
@@ -134,7 +103,6 @@ public class PlayerUI : MonoBehaviour
         rect.localScale = new Vector3(0f, 1f, 1f);
 
         _headIcon.sprite = _player.HeadIcon;
-        _skiilIcon.sprite = _player.SkillIcon;
 
         time = 0f;
 
@@ -151,11 +119,11 @@ public class PlayerUI : MonoBehaviour
 
         rect.localScale = Vector3.one;
     }
-    */
+    
 
     void HpChange(float hp)
     {
-        _hpText.text = hp.ToString() + "/" + _maxHp.ToString();
+        _hpText.text = hp.ToString("F0") + "/" + _maxHp.ToString("F0");
         _hpImage.fillAmount = hp / _maxHp;
     }
 

@@ -9,11 +9,12 @@ public class Player : MonoBehaviour, IDamagable
 
     [SerializeField] private PlayerController _controller;
     [SerializeField] private List<Skul> _skulList;
-
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _dashSpeed = 15f;
+    [SerializeField] private PlayerUI _playerUI;
+
     private float _attack = 5f;
-    private float _armor = 5;
+    private float _armor = 3;
     private float _hp;
     private float _maxHp = 100;
     private int _currentSkul = 0;
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour, IDamagable
     public float Attack => _attack;
     public float CoolTime => _skulList[_currentSkul].SkillCool;
     public float CoolTimeMax => _skulList[_currentSkul].SkillCoolMax;
-    public Sprite HeadIcon => _skulList[_currentSkul].HeadIcon;
+    public Sprite HeadIcon => _skulList[_changeSkul].HeadIcon;
     public Sprite SkillIcon => _skulList[_currentSkul].SkillIcon;
     public float MaxHp => _maxHp;
     public event Action<float> HpChange;
@@ -50,6 +51,11 @@ public class Player : MonoBehaviour, IDamagable
         if (_controller == null)
         {
             _controller = GetComponent<PlayerController>();
+        }
+
+        if (_playerUI == null)
+        {
+            _playerUI = PlayerUI.Instance;
         }
     }
 
@@ -79,6 +85,7 @@ public class Player : MonoBehaviour, IDamagable
             {
                 _changeSkul = _skulList.Count - 1;
             }
+            _playerUI.ShowNextHead();
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -87,6 +94,7 @@ public class Player : MonoBehaviour, IDamagable
             {
                 _changeSkul = 0;
             }
+            _playerUI.ShowNextHead();
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -106,21 +114,41 @@ public class Player : MonoBehaviour, IDamagable
         _skulList[change].SkulFlip(_skulList[_currentSkul].Flip);
         _controller.SetSkul(_skulList[change]);
         _currentSkul = change;
-        // 폭탄병의 자폭으로 인해 교체되는 경우가 있으므로 초기화
-        _changeSkul = change;
+        _playerUI.HeadChange();
+        _playerUI.SetCool();
+        // 폭탄병의 자폭으로 인해 교체되는 경우가 있으므로 체크
+        if (_currentSkul != _changeSkul)
+        {
+            _changeSkul = change;
+            _playerUI.ShowNextHead();
+        }        
     }
 
     public void Damaged(float damage)
     {
         _hp -= damage - (_armor * _skulList[_currentSkul].SkulArmor);
+        HpChange?.Invoke(_hp);
+        if (_hp <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        _playerUI.SelfDestroy();
+        _skulList[_currentSkul].CollectProjectile();
+        GameManager.Instance.PlayerDie();
+        Destroy(gameObject);
     }
 
     void SceneChange()
     {
+        _skulList[_currentSkul].CollectProjectile();
         transform.position = new Vector3(-9, -2, 0);        
     }
 
-    public void ChangeStat(EPlayerStat stat, float value)
+    public void UpgradeStat(EPlayerStat stat, float value)
     {
         switch (stat)
         {
@@ -130,6 +158,7 @@ public class Player : MonoBehaviour, IDamagable
                 {
                     _hp = _maxHp;
                 }
+                HpChange?.Invoke(_hp);
                 break;
             case EPlayerStat.Attack:
                 _attack *= value;

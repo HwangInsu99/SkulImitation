@@ -168,10 +168,10 @@ MonoBehaviour:
   _maxCombo: 1
   _skillCoolTime: 30
   _skulArmorMul: 0.8
-  _headIcon: {fileID: 21300000, guid: c387b7047dc5e004a8cf4d854a4ca885, type: 3}
-  _skillIcon: {fileID: 21300000, guid: 139576cbd5a65284fb5de19e524a03cf, type: 3}
+  _headIcon: {fileID: 21300000, guid: 5d04a075d2b277645b82651cf55d329c, type: 3}
+  _skillIcon: {fileID: 21300000, guid: 49a7ca25f703c7b4c9c7520521a3ec5f, type: 3}
   _skillCollider: {fileID: 8771124518645264238}
-  _bombTimerMax: 10
+  _bombTimerMax: 5
 --- !u!1 &3966468500763948184
 GameObject:
   m_ObjectHideFlags: 0

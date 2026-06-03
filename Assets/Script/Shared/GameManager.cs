@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private UIManager _uiManager;
 
-    private int _cleatStageNum;
+    private int _clearStageNum;
 
     private void Awake()
     {
@@ -31,12 +31,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _cleatStageNum = 0;
+        _clearStageNum = 0;
     }
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (_uiManager.IsStop)
         {
+            return;
+        }
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {            
             if (Time.timeScale == 0.0f)
             {
                 _uiManager.CloseAll();
@@ -57,8 +61,15 @@ public class GameManager : MonoBehaviour
 
     public void StageClear()
     {
-        _cleatStageNum++;
-        if (_cleatStageNum >= 5)
+        StopGame(true);
+        _uiManager.OpenChoice();
+    }
+
+    public void NextStage()
+    {
+        StopGame(false);
+        _clearStageNum++;
+        if (_clearStageNum >= 5)
         {
             SceneChanger.Instance.MoveScene(EScenes.BossStage);
         }
@@ -66,5 +77,11 @@ public class GameManager : MonoBehaviour
         {
             SceneChanger.Instance.MoveNormalStage();
         }
+    }
+
+    public void PlayerDie()
+    {
+        StopGame(true);
+        _uiManager.OpenDeathMenu();
     }
 }

@@ -81,7 +81,7 @@ public class LittleBone : Skul
         _headFire.transform .localPosition = pos;
     }
 
-    public void CollectHead()
+    public override void CollectProjectile()
     {
         _head.transform.SetParent(transform);
         _head.gameObject.SetActive(false);
@@ -94,7 +94,7 @@ public class LittleBone : Skul
     {
         if (_skillCool > 0)
         {
-            CollectHead();
+            CollectProjectile();
         }
     }
 }

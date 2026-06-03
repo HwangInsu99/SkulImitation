@@ -88,7 +88,6 @@ public class SceneChanger : MonoBehaviour
         float currentTime = 0;
         float t;
 
-        //SoundManager.Instance.PlaySfx(ESfxType.Loading);
 
         while (currentTime < fadeTime)
         {
@@ -143,7 +142,7 @@ public class SceneChanger : MonoBehaviour
         EScenes stage;
         while (true)
         {
-            stage = (EScenes)UnityEngine.Random.Range((int)EScenes.Stage_01, (int)EScenes.Stage_03 + 1);
+            stage = (EScenes)UnityEngine.Random.Range((int)EScenes.Stage_01, (int)EScenes.Stage_05 + 1);
             if (stage != currentScene)
             {
                 break;

@@ -207,6 +207,7 @@ MonoBehaviour:
   _attackCool: 4
   _attackDist: 5
   _attack: 4
+  _maxHp: 5
   _arrow: {fileID: 2986648838699202122, guid: c0057eed9c4d11442869d82902af46ee, type: 3}
   _firePoint: {fileID: 6058968235668808164}
 --- !u!1 &3856682338167048317

@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private Coroutine _dashCo;
     private WaitForSeconds _dashTime = new WaitForSeconds(0.3f);
     private WaitForSeconds _dashCool = new WaitForSeconds(1.0f);
-    [SerializeField]private bool _canSkill = true;
+    [SerializeField] private bool _canSkill = true;
 
     public Rigidbody2D Rb => _rb;
     private void Awake()
@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _originGravity = _rb.gravityScale;
+        _canSkill = true;
     }
 
     void Update()

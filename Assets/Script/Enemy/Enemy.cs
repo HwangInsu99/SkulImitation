@@ -24,6 +24,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     [SerializeField] protected float _attackCool;
     [SerializeField] protected float _attackDist = 1.5f;
     [SerializeField] protected float _attack;
+    [SerializeField] protected float _maxHp;
 
     protected int _hashSpeedX;
     protected int _hashAttack;
@@ -31,7 +32,6 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     protected float _dir;
     protected float _speed = 3.0f;
     protected float _hp;
-    protected float _maxHp;
     protected float _patrolTimeOrigin = 2.0f;
     protected float _patrolTime;
     protected float _waitingTimeOrigin = 5.0f;
@@ -39,6 +39,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     protected float _missDist;
     protected float _remainTime = 1.0f;
     protected float _coolTime;
+    protected bool _isCounted = false;
 
     public Transform Target => _target;
     public float AttackDamage => _attack;
@@ -56,7 +57,17 @@ public abstract class Enemy : MonoBehaviour, IDamagable
         _dir = 1;
         _missDist = _detectArea.radius * transform.lossyScale.x;
         ChangeState(EEState.Idle);
+        AddEnemyCount();
+    }
+
+    public void AddEnemyCount()
+    {
+        if (_isCounted)
+        {
+            return;
+        }
         StageManager.Instance.IncreaseEnemy();
+        _isCounted = true;
     }
 
     protected virtual void Update()
@@ -111,6 +122,12 @@ public abstract class Enemy : MonoBehaviour, IDamagable
 
     protected virtual void Chase()
     {
+        if (_target == null)
+        {
+            ChangeState(EEState.Idle);
+            return;
+        }
+
         _dir = Mathf.Sign(_target.position.x - transform.position.x);
         _renderer.flipX = _dir < 0;
     }

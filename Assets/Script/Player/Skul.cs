@@ -136,6 +136,7 @@ public abstract class Skul : MonoBehaviour
     }
 
     public virtual void ChangeSkul() { }
+    public virtual void CollectProjectile() { }
 
     public void LockEnd()
     {
@@ -149,7 +150,7 @@ public abstract class Skul : MonoBehaviour
     void ReduceCool(float currentTime)
     {        
         _skillCool -= currentTime - _changeTime;
-        if(_skillCool < 0)
+        if(_skillCool <= 0)
         {
             _skillCool = 0;
             _controller.SkillReady(true);
