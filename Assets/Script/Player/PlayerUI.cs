@@ -123,7 +123,7 @@ public class PlayerUI : MonoBehaviour
 
     void HpChange(float hp)
     {
-        _hpText.text = hp.ToString("F0") + "/" + _maxHp.ToString("F0");
+        _hpText.text = Mathf.RoundToInt(hp).ToString() + "/" + Mathf.RoundToInt(_maxHp).ToString();
         _hpImage.fillAmount = hp / _maxHp;
     }
 

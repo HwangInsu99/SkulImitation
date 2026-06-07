@@ -119,10 +119,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.203125}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.46875, y: 0.40625}
     newSize: {x: 0.46875, y: 0.40625}
     adaptiveTilingThreshold: 0.5
@@ -130,7 +130,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.46875, y: 0.40625}
+  m_Size: {x: 0.6, y: 0.6}
   m_EdgeRadius: 0
 --- !u!50 &6970711759640319258
 Rigidbody2D:
@@ -174,9 +174,11 @@ MonoBehaviour:
   _playerTag: Player
   _skul: {fileID: 0}
   _rb: {fileID: 6970711759640319258}
+  _collider: {fileID: 6067657539318856039}
   _speed: 10
   _attackMultiply: 1.5
-  _maxFly: 3
+  _maxFly: 1
+  _rotateSpeed: 720
   _renderer: {fileID: 681754522619550535}
   _attackLayer: PlayerAttack
   _falledLayer: Default

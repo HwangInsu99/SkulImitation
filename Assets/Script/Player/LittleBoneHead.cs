@@ -7,9 +7,11 @@ public class LittleBoneHead : MonoBehaviour
     [SerializeField] private string _playerTag = "Player";
     [SerializeField] private LittleBone _skul;
     [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private BoxCollider2D _collider;
     [SerializeField] private float _speed;
     [SerializeField] private float _attackMultiply = 1.5f;
     [SerializeField] private float _maxFly = 3.0f;
+    [SerializeField] private float _rotateSpeed = 720f;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private string _attackLayer = "PlayerAttack";
     [SerializeField] private string _falledLayer = "Default";
@@ -42,12 +44,13 @@ public class LittleBoneHead : MonoBehaviour
         if (_isAttack)
         {
             _flyTime -= Time.deltaTime;
+            transform.Rotate(0, 0, _rotateSpeed * -_dir * Time.deltaTime);
             if (_flyTime <= 0)
             {
                 _flyTime = 0;
                 IsFalling();
             }
-        }        
+        }
     }
 
     private void FixedUpdate()
@@ -69,6 +72,7 @@ public class LittleBoneHead : MonoBehaviour
         gameObject.layer = _attack;
         _rb.gravityScale = 0f;
         _rb.velocity = Vector2.zero;
+        _collider.isTrigger = true;
         _flyTime = _maxFly;
     }
 
@@ -82,15 +86,9 @@ public class LittleBoneHead : MonoBehaviour
         _skul.CollectProjectile();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag(_playerTag))
-        {
-            ReturnSkul();
-            return;
-        }
-
-        if (_isAttack && other.gameObject.TryGetComponent<IDamagable>(out IDamagable target))
+        if (_isAttack && other.TryGetComponent<IDamagable>(out IDamagable target))
         {
             target.Damaged(_damage);
         }
@@ -98,12 +96,20 @@ public class LittleBoneHead : MonoBehaviour
         if (_isAttack)
         {
             IsFalling();
-        }        
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag(_playerTag))
+        {
+            ReturnSkul();
+        }      
     }
 
     void IsFalling()
     {
         gameObject.layer = _falled;
+        _collider.isTrigger = false;
         _rb.velocity = Vector2.zero;
         _rb.gravityScale = _origingravity;
         _isAttack = false;

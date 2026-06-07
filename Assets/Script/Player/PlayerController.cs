@@ -21,9 +21,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private string _groundLayerString;
     [SerializeField] private EPState _state;
+    [SerializeField] private float _jumpPower = 8f;
+    [SerializeField] private bool _canSkill = true;
+    [Header ("레이어 이름")]
+    [SerializeField] private string _defaultL = "Player";
+    [SerializeField] private string _dashL = "Dash";
+
 
     private float _moveX;
-    [SerializeField] private float _jumpPower = 8f;
     private bool _canJump = true;
     private bool _canDash = true;
     private bool _dashBuffered = false;
@@ -31,7 +36,8 @@ public class PlayerController : MonoBehaviour
     private Coroutine _dashCo;
     private WaitForSeconds _dashTime = new WaitForSeconds(0.3f);
     private WaitForSeconds _dashCool = new WaitForSeconds(1.0f);
-    [SerializeField] private bool _canSkill = true;
+    private int _defaultLayer;
+    private int _dashLayer;
 
     public Rigidbody2D Rb => _rb;
     private void Awake()
@@ -45,6 +51,8 @@ public class PlayerController : MonoBehaviour
         {
             _rb = GetComponent<Rigidbody2D>();
         }
+        _defaultLayer = LayerMask.NameToLayer(_defaultL);
+        _dashLayer = LayerMask.NameToLayer(_dashL);
     }
 
     private void Start()
@@ -203,6 +211,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Co_Dash()
     {
         _state |= EPState.Dash;
+        _skul.gameObject.layer = _dashLayer;
         _skul.Dash(true);
         _skul.Walk(false);
         _skul.YSpeed(0);
@@ -217,6 +226,7 @@ public class PlayerController : MonoBehaviour
 
             yield break;
         }
+        _skul.gameObject.layer = _defaultLayer;
         _skul.Dash(false);
         _skul.DashEnd();
         _canDash = false;

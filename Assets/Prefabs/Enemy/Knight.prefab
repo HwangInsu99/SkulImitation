@@ -206,8 +206,9 @@ MonoBehaviour:
   _state: 0
   _attackCool: 4
   _attackDist: 2
-  _attack: 3
+  _attack: 6
   _maxHp: 5
+  _offset: {x: 0, y: 0.8, z: 0}
   _attackCollider: {fileID: 76210021289855865}
 --- !u!1 &5314278770701885729
 GameObject:

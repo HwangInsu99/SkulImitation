@@ -25,6 +25,8 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     [SerializeField] protected float _attackDist = 1.5f;
     [SerializeField] protected float _attack;
     [SerializeField] protected float _maxHp;
+    [Header ("데미지 텍스트 y축 위치")]
+    [SerializeField] protected Vector3 _offset;
 
     protected int _hashSpeedX;
     protected int _hashAttack;
@@ -194,6 +196,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
             return;
         }
         _hp -= damage;
+        DamageTextManager.Instance.ShowDamage(damage, transform.position + _offset);
         if (_hp <= 0)
         {
             Die();
