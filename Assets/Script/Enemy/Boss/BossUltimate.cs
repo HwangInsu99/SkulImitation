@@ -4,13 +4,39 @@ using UnityEngine;
 
 public class BossUltimate : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
+    [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private float _speed;
+
+    private float _remainTime = 2f;
+    private float _dir;
+    private bool _isMove = false;
 
     void Update()
     {
-        
+        if (!_isMove)
+        {
+            return;
+        }
+
+        _remainTime -= Time.deltaTime;
+        transform.position += Vector3.right * _dir * _speed * Time.deltaTime;
+
+        if (_remainTime <= 0)
+        {
+            _isMove = false;
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void Fire(float dir)
+    {
+        _renderer.flipX = dir < 0;
+        _dir = dir;
+        gameObject.SetActive(true);
+    }
+
+    void Move()
+    {
+        _isMove = true;
     }
 }

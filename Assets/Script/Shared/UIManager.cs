@@ -81,6 +81,10 @@ public class UIManager : MonoBehaviour
 
     public void ReturnCatsle()
     {
+        if (Player.Instance != null)
+        {
+            Player.Instance.ReturnCatsle();
+        }
         _deathMenu.SetActive(false);
         GameManager.Instance.StopGame(false);
         SceneChanger.Instance.MoveScene(EScenes.Catsle);

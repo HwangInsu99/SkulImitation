@@ -1,16 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossUltimateEffect : MonoBehaviour
 {
-    void Start()
+    [SerializeField] private Animator _animator;
+    [SerializeField] private string _paramCharge = "bCharge";
+
+    private int _hashCharge;
+
+    private void Awake()
     {
-        
+        if (_animator == null)
+        {
+            _animator = GetComponent<Animator>();
+        }
+        _hashCharge = Animator.StringToHash(_paramCharge);
     }
 
-    void Update()
+    public void ChargeStart()
     {
-        
+        _animator.SetBool(_hashCharge, true);
+    }
+
+    public void ChargeEnd()
+    {
+        _animator.SetBool(_hashCharge, false);
     }
 }

@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class Boss : MonoBehaviour, IDamagable
 {
     public enum EBState
     {
@@ -59,8 +60,8 @@ public class Boss : MonoBehaviour
     private int _hashGroggy;
     private float _hp;
     private float _dir;
-    private float _speed = 4.0f;
-    private float _rushSpeed = 8.0f;
+    private float _speed = 6.0f;
+    private float _rushSpeed = 12.0f;
     private float _coolTime;
     private bool _useUltimate = false;
     private bool _usePotion = false;
@@ -70,6 +71,8 @@ public class Boss : MonoBehaviour
     private Vector3 _originUltimatePos;
 
     public float AttackDamage => _attack;
+    public float MaxHp => _maxHp;
+    public event Action<float> HpChange;
 
     private void Awake()
     {
@@ -188,7 +191,7 @@ public class Boss : MonoBehaviour
         float attack;
         float rush;
         float magic;
-        float rand = Random.value;
+        float rand = UnityEngine.Random.value;
 
         if (_hp / _maxHp <= 0.6f && !_usePotion)
         {
@@ -250,8 +253,11 @@ public class Boss : MonoBehaviour
         {
             return;
         }
+
         _hp -= damage;
         DamageTextManager.Instance.ShowDamage(damage, transform.position + _offset);
+        HpChange?.Invoke(_hp);
+
         if (_hp <= 0)
         {
             Die();
@@ -279,19 +285,20 @@ public class Boss : MonoBehaviour
     void MagicFire()
     {
         AttackPosChange(EType.Magic);
-        //_eBall.Fire(_target);
+        _eBall.transform.localPosition = _eBallFirePoint.localPosition;
+        _eBall.Fire(_target);
     }
 
     void UltimateCharge()
     {
-        //_effect.ChargeStart();
+        _effect.ChargeStart();
     }
 
     void UltimateSlash()
     {
         AttackPosChange(EType.Ultimate);
-        //_effect.ChargeEnd();
-        //_ultimate.Fire();
+        _effect.ChargeEnd();
+        _ultimate.Fire(_dir);
     }
 
     void Groggy()
@@ -299,7 +306,7 @@ public class Boss : MonoBehaviour
         StartCoroutine(Co_Groggy());
     }
 
-    void RushEnd()
+    public void RushEnd()
     {
         _rush.enabled = false;
         _animator.SetBool(_hashRush, false);
@@ -309,6 +316,7 @@ public class Boss : MonoBehaviour
     void UsePotion()
     {
         _hp += _maxHp / 2;
+        HpChange?.Invoke(_hp);
         ActiveEnd();
     }
 

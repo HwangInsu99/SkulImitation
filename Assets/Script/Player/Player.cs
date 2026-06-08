@@ -126,7 +126,9 @@ public class Player : MonoBehaviour, IDamagable
 
     public void Damaged(float damage)
     {
-        _hp -= damage - (_armor * _skulList[_currentSkul].SkulArmor);
+        float hitDamage = damage - (_armor * _skulList[_currentSkul].SkulArmor);
+        Mathf.Min(hitDamage, 1);
+        _hp -= hitDamage;
         HpChange?.Invoke(_hp);
         if (_hp <= 0)
         {
@@ -139,6 +141,13 @@ public class Player : MonoBehaviour, IDamagable
         _playerUI.SelfDestroy();
         _skulList[_currentSkul].CollectProjectile();
         GameManager.Instance.PlayerDie();
+        Destroy(gameObject);
+    }
+
+    public void ReturnCatsle()
+    {
+        _playerUI.SelfDestroy();
+        _skulList[_currentSkul].CollectProjectile();
         Destroy(gameObject);
     }
 
