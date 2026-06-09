@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IDamagable
 {
@@ -25,7 +25,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
     [SerializeField] protected float _attackDist = 1.5f;
     [SerializeField] protected float _attack;
     [SerializeField] protected float _maxHp;
-    [Header ("µ¥¹ÌÁö ÅØ½ºÆ® yÃà À§Ä¡")]
+    [Header ("ë°ë¯¸ì§€ í…ìŠ¤íŠ¸ yì¶• ìœ„ì¹˜")]
     [SerializeField] protected Vector3 _offset;
 
     protected int _hashSpeedX;
@@ -97,7 +97,7 @@ public abstract class Enemy : MonoBehaviour, IDamagable
             case EEState.Chase:
                 Chase();
                 break;
-            case EEState.Attack: // °ø°İµµÁß ¾÷µ¥ÀÌÆ® ÁøÇà ¾ÈÇÏ±â À§ÇÔ
+            case EEState.Attack: // ê³µê²©ë„ì¤‘ ì—…ë°ì´íŠ¸ ì§„í–‰ ì•ˆí•˜ê¸° ìœ„í•¨
                 return;
             case EEState.CoolDown:
                 CoolDown();

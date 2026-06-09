@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,6 +30,7 @@ public class WereWolf : Skul
     {
         AttackPosChange();
         _attackCollider.enabled = true;
+        SoundManager.Instance.PlaySfx(ESfxType.Attack2);
     }
 
     public void AttackEnd()
@@ -51,6 +52,7 @@ public class WereWolf : Skul
     public void SkillStart()
     {
         _skillCollider.enabled = true;
+        SoundManager.Instance.PlaySfx(ESfxType.Wolf_Skill);
     }
 
     public void SkillEnd()
@@ -61,6 +63,7 @@ public class WereWolf : Skul
     public void JumpAtkStart()
     {
         _jumpAtkCollider.enabled = true;
+        SoundManager.Instance.PlaySfx(ESfxType.Attack1);
     }
 
     public void JumpAtkEnd()

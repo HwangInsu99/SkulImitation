@@ -15,4 +15,4 @@ MonoBehaviour:
   _stat: 1
   _value: 1.2
   _info: "\uACF5\uACA9\uB825 20% \uC99D\uAC00"
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: d2b7b47fca343224c9281d2a3d62bece, type: 3}

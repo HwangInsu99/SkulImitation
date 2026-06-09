@@ -3858,8 +3858,8 @@ MonoBehaviour:
   _state: 0
   _activeCool: 3
   _comboDist: 1.5
-  _attack: 5
-  _maxHp: 100
+  _attack: 6
+  _maxHp: 120
   _offset: {x: 0, y: 0.8, z: 0}
 --- !u!61 &1225485087
 BoxCollider2D:
@@ -4194,6 +4194,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _renderer: {fileID: 1368709631}
   _speed: 10
+  _boss: {fileID: 0}
+  _playerTag: Player
+  _damageMultiply: 6
 --- !u!1 &1429952646
 GameObject:
   m_ObjectHideFlags: 0

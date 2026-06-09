@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpearSkul : Skul
 {
@@ -33,6 +33,7 @@ public class SpearSkul : Skul
     {
         AttackPosChange();
         _attackCollider.enabled = true;
+        SoundManager.Instance.PlaySfx(ESfxType.Sting);
     }
 
     public void AttackEnd()
@@ -56,6 +57,8 @@ public class SpearSkul : Skul
         float dir = _renderer.flipX ? -1 : 1;
         _controller.Rb.velocity = new Vector2(dir * _skillMovePower, 0f);
         _attackCollider.enabled = true;
+        SoundManager.Instance.PlaySfx(ESfxType.Dash);
+        SoundManager.Instance.PlaySfx(ESfxType.Sting);
     }
 
     public void SkillEnd()
@@ -67,6 +70,7 @@ public class SpearSkul : Skul
     public void JumpAtkStart()
     {
         _jumpAtkCollider.enabled = true;
+        SoundManager.Instance.PlaySfx(ESfxType.Sting);
     }
 
     public void JumpAtkEnd()

@@ -55,7 +55,53 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ebe80e4d21f764242a237a02faa7d4d7, type: 3}
   - type: 3
     clip: {fileID: 8300000, guid: 7dff2bc68d210754b9fc5e1f0a49a303, type: 3}
-  _sfxList: []
+  _sfxList:
+  - type: 0
+    clip: {fileID: 8300000, guid: 0df163b1d7b96cf49b62383932355413, type: 3}
+  - type: 1
+    clip: {fileID: 8300000, guid: 3f5cf219a33468e41832edc638686c13, type: 3}
+  - type: 2
+    clip: {fileID: 8300000, guid: c2123ee4882c75c478837e18e1945e1e, type: 3}
+  - type: 3
+    clip: {fileID: 8300000, guid: 8fbc890ed72ec034a8969adc088b7fd1, type: 3}
+  - type: 4
+    clip: {fileID: 8300000, guid: 5b6b122169c0d904d9f959731aacd0f1, type: 3}
+  - type: 5
+    clip: {fileID: 8300000, guid: f983f557c18051945b6dcad0bd658567, type: 3}
+  - type: 6
+    clip: {fileID: 8300000, guid: 42e8980a04338144abab35d950e18596, type: 3}
+  - type: 7
+    clip: {fileID: 8300000, guid: 16a475576b4b5a54b9e2d2cfc6952bba, type: 3}
+  - type: 8
+    clip: {fileID: 8300000, guid: 0eda29826fde58b4dad332ac9408e191, type: 3}
+  - type: 9
+    clip: {fileID: 8300000, guid: 38a996b3da3d01c419f8bb738f018edb, type: 3}
+  - type: 10
+    clip: {fileID: 8300000, guid: 86ba5fe7f44387f478807881e43d5dbe, type: 3}
+  - type: 11
+    clip: {fileID: 8300000, guid: 777d619334ec1b74397accb4a6853c59, type: 3}
+  - type: 12
+    clip: {fileID: 8300000, guid: ea3f73ee72472644aaf951c0eaae7ef5, type: 3}
+  - type: 13
+    clip: {fileID: 8300000, guid: 639bff935f574114fa7950f39f34d788, type: 3}
+  - type: 14
+    clip: {fileID: 8300000, guid: 99196a5f6dfa74e4e9ad41b2d37df277, type: 3}
+  - type: 15
+    clip: {fileID: 8300000, guid: 7a02d4dd360fa7f439677350c22d603a, type: 3}
+  - type: 16
+    clip: {fileID: 8300000, guid: 8e3a648d7c02bae48a2e2ade8041b65b, type: 3}
+  - type: 17
+    clip: {fileID: 8300000, guid: 447a37afa34dfad4cb6a3e24367f5226, type: 3}
+  - type: 18
+    clip: {fileID: 8300000, guid: 2f9991f04e18eaa4c853c0d824440b14, type: 3}
+  - type: 19
+    clip: {fileID: 8300000, guid: dec9e8eb71cfa3e4c902f373acfc8b9e, type: 3}
+  - type: 20
+    clip: {fileID: 8300000, guid: e5ebaf5483391004c8357182445aaab9, type: 3}
+  - type: 21
+    clip: {fileID: 8300000, guid: 793061d55ca338a498818e749b1b9b2d, type: 3}
+  - type: 22
+    clip: {fileID: 8300000, guid: a7b08d19e2627514cafffbb7fb5d4def, type: 3}
   _mixer: {fileID: 24100000, guid: d957762496561014b945b951365eeef2, type: 2}
   _bgmSource: {fileID: 7025985862568629157}
   _sfxSource: {fileID: 6077952893430701520}

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -89,7 +89,7 @@ public class PlayerUI : MonoBehaviour
 
         RectTransform rect = _headIcon.rectTransform;
 
-        // 1 ¡æ 0
+        // 1 â†’ 0
         while (time < duration)
         {
             time += Time.deltaTime;
@@ -106,7 +106,7 @@ public class PlayerUI : MonoBehaviour
 
         time = 0f;
 
-        // 0 ¡æ 1
+        // 0 â†’ 1
         while (time < duration)
         {
             time += Time.deltaTime;

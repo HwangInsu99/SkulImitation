@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -90,6 +90,7 @@ public class LittleBoneHead : MonoBehaviour
     {
         if (_isAttack && other.TryGetComponent<IDamagable>(out IDamagable target))
         {
+            SoundManager.Instance.PlaySfx(ESfxType.Hit_Blow);
             target.Damaged(_damage);
         }
 

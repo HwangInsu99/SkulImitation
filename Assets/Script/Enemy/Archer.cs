@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class Archer : Enemy
@@ -56,6 +56,11 @@ public class Archer : Enemy
         base.Die();
     }
 
+    void FireReady()
+    {
+        SoundManager.Instance.PlaySfx(ESfxType.Archer_Ready);
+    }
+
     public void AttackEnd()
     {
         Vector3 pos = _originFirePos;
@@ -64,5 +69,6 @@ public class Archer : Enemy
         EnemyProjectile arrow = Instantiate<EnemyProjectile>(_arrow, _firePoint.position, Quaternion.identity);
         arrow.SetProjectile(_attack, _dir);
         ChangeState(EEState.CoolDown);
+        SoundManager.Instance.PlaySfx(ESfxType.Archer_Fire);
     }
 }

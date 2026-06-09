@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -52,7 +52,7 @@ public class DamageTextManager : MonoBehaviour
         }
         else
         {
-            // °¡Àå ¸ÕÀú È°¼ºÈ­µÈ ÅØ½ºÆ® queue·Î È¸¼ö
+            // ê°€ì¥ ë¨¼ì € í™œì„±í™”ëœ í…ìŠ¤íŠ¸ queueë¡œ íšŒìˆ˜
             _aliveList[0].ReturnPool();
             target = _queue.Dequeue();
         }

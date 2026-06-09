@@ -1,4 +1,4 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,7 +39,7 @@ public class UpgradeButton : MonoBehaviour
         SetButtonInfo(false);
     }
 
-    // ¾î¶²°É ÂüÁ¶¹ŞÀ»Áö if·Î ºĞ±â
+    // ì–´ë–¤ê±¸ ì°¸ì¡°ë°›ì„ì§€ ifë¡œ ë¶„ê¸°
     void SetButtonInfo(bool stat)
     {
         if (stat)

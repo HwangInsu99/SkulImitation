@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -25,7 +25,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource _bgmSource;
     [SerializeField] private AudioSource _sfxSource;
 
-    [Header("¿É¼Ç")]
+    [Header("ì˜µì…˜")]
     [SerializeField] private bool _randomPitch = true;
     [SerializeField] private Vector2 _pitchRange = new Vector2(0.95f, 1.05f);
 
@@ -42,7 +42,7 @@ public class SoundManager : MonoBehaviour
     {
         if (_mixer == null)
         {
-            Debug.LogError("SoundManager¿¡ AudioMixer¾È³Ö¾úÀ½");
+            Debug.LogError("SoundManagerì— AudioMixerì•ˆë„£ì—ˆìŒ");
             enabled = false;
             return;
         }
@@ -119,12 +119,12 @@ public class SoundManager : MonoBehaviour
         {
             if (data.clip == null)
             {
-                Debug.LogWarning($"Å¬¸³ ¾øÀ½ : {data.type}");
+                Debug.LogWarning($"í´ë¦½ ì—†ìŒ : {data.type}");
                 continue;
             }
             if (_bgmDict.ContainsKey(data.type))
             {
-                Debug.LogWarning($"Áßº¹ Å¸ÀÔ : {data.type}");
+                Debug.LogWarning($"ì¤‘ë³µ íƒ€ì… : {data.type}");
                 continue;
             }
             _bgmDict.Add(data.type, data.clip);
@@ -134,12 +134,12 @@ public class SoundManager : MonoBehaviour
         {
             if (data.clip == null)
             {
-                Debug.LogWarning($"Å¬¸³ ¾øÀ½ : {data.type}");
+                Debug.LogWarning($"í´ë¦½ ì—†ìŒ : {data.type}");
                 continue;
             }
             if (_sfxDict.ContainsKey(data.type))
             {
-                Debug.LogWarning($"Áßº¹ Å¸ÀÔ : {data.type}");
+                Debug.LogWarning($"ì¤‘ë³µ íƒ€ì… : {data.type}");
                 continue;
             }
             _sfxDict.Add(data.type, data.clip);
@@ -149,7 +149,7 @@ public class SoundManager : MonoBehaviour
         {
             if (!_bgmDict.ContainsKey(type))
             {
-                Debug.LogWarning($"BGM ¸ÅÇÎ ¾ÈµÊ : {type}");
+                Debug.LogWarning($"BGM ë§¤í•‘ ì•ˆë¨ : {type}");
             }
         }
 
@@ -157,7 +157,7 @@ public class SoundManager : MonoBehaviour
         {
             if (!_sfxDict.ContainsKey(type))
             {
-                Debug.LogWarning($"SFX ¸ÅÇÎ ¾ÈµÊ : {type}");
+                Debug.LogWarning($"SFX ë§¤í•‘ ì•ˆë¨ : {type}");
             }
         }
     }
@@ -170,10 +170,10 @@ public class SoundManager : MonoBehaviour
         }
         if (!_bgmDict.TryGetValue(type, out AudioClip clip))
         {
-            Debug.LogWarning($"Bgm ¾øÀ½ : {type}");
+            Debug.LogWarning($"Bgm ì—†ìŒ : {type}");
             return;
         }
-        // Áßº¹ Àç»ı ¹æÁö
+        // ì¤‘ë³µ ì¬ìƒ ë°©ì§€
         if (_bgmSource.clip == clip)
         {
             return;
@@ -192,7 +192,7 @@ public class SoundManager : MonoBehaviour
         }
         if (!_sfxDict.TryGetValue(type, out AudioClip clip))
         {
-            Debug.LogWarning($"Sfx ¾øÀ½ : {type}");
+            Debug.LogWarning($"Sfx ì—†ìŒ : {type}");
             return;
         }
         float now = Time.unscaledTime;

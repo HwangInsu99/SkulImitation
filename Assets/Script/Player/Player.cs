@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -116,7 +116,7 @@ public class Player : MonoBehaviour, IDamagable
         _currentSkul = change;
         _playerUI.HeadChange();
         _playerUI.SetCool();
-        // ÆøÅºº´ÀÇ ÀÚÆøÀ¸·Î ÀÎÇØ ±³Ã¼µÇ´Â °æ¿ì°¡ ÀÖÀ¸¹Ç·Î Ã¼Å©
+        // í­íƒ„ë³‘ì˜ ìí­ìœ¼ë¡œ ì¸í•´ êµì²´ë˜ëŠ” ê²½ìš°ê°€ ìˆìœ¼ë¯€ë¡œ ì²´í¬
         if (_currentSkul != _changeSkul)
         {
             _changeSkul = change;

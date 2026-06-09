@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private EPState _state;
     [SerializeField] private float _jumpPower = 8f;
     [SerializeField] private bool _canSkill = true;
-    [Header ("∑π¿ÃæÓ ¿Ã∏ß")]
+    [Header ("Î†àÏù¥Ïñ¥ Ïù¥Î¶Ñ")]
     [SerializeField] private string _defaultL = "Player";
     [SerializeField] private string _dashL = "Dash";
 
@@ -156,6 +156,7 @@ public class PlayerController : MonoBehaviour
             velocity.y = 0;
             _rb.velocity = velocity;
         }
+        SoundManager.Instance.PlaySfx(ESfxType.Jump);
         _rb.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
     }
 
@@ -211,6 +212,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Co_Dash()
     {
         _state |= EPState.Dash;
+        SoundManager.Instance.PlaySfx(ESfxType.Dash);
         _skul.gameObject.layer = _dashLayer;
         _skul.Dash(true);
         _skul.Walk(false);

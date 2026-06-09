@@ -77,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -191044941
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1ad3228ac1cdcaa419ab5a03497f19e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -207,7 +207,7 @@ MonoBehaviour:
   _attackCool: 4
   _attackDist: 5
   _attack: 5
-  _maxHp: 5
+  _maxHp: 12
   _offset: {x: 0, y: 0.8, z: 0}
   _arrow: {fileID: 2986648838699202122, guid: c0057eed9c4d11442869d82902af46ee, type: 3}
   _firePoint: {fileID: 6058968235668808164}

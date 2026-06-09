@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class Knight : Enemy
@@ -61,6 +61,7 @@ public class Knight : Enemy
         pos.x *= _dir;
         _attackCollider.transform.localPosition = pos;
         _attackCollider.enabled = true;
+        SoundManager.Instance.PlaySfx(ESfxType.Knight_Attack);
     }
 
     public void AttackEnd()

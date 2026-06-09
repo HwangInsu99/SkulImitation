@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Tank : Enemy
 {
-    // ÅÂÅ¬ ¸¸µé¾î¾ßÇÔ
+    // íƒœí´ ë§Œë“¤ì–´ì•¼í•¨
     [SerializeField] private BoxCollider2D _attackCollider;
     [SerializeField] private TankTackle _tackle;
     [SerializeField] private float _tackleMovePower;
@@ -102,6 +102,7 @@ public class Tank : Enemy
         pos.x *= _dir;
         _attackCollider.transform.localPosition = pos;
         _attackCollider.enabled = true;
+        SoundManager.Instance.PlaySfx(ESfxType.Tank_Attack);
     }
 
     public void AttackEnd()
@@ -114,6 +115,7 @@ public class Tank : Enemy
     {
         _rb.velocity = new Vector2(_dir * _tackleMovePower, 0f);
         _tackle.TackleStart(_renderer.flipX);
+        SoundManager.Instance.PlaySfx(ESfxType.Tank_Tackle);
         AttackStart();
     }
 

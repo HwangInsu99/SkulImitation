@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -136,7 +136,7 @@ public class SceneChanger : MonoBehaviour
         return nowScene;
     }
 
-    // Ä³½½, º¸½º, Å¸ÀÌÆ²Àº »ç¿ëÇÏÁö ¾Ê°í ¹Ù·Î ¹«ºê¾À
+    // ìºìŠ¬, ë³´ìŠ¤, íƒ€ì´í‹€ì€ ì‚¬ìš©í•˜ì§€ ì•Šê³  ë°”ë¡œ ë¬´ë¸Œì”¬
     public void MoveNormalStage()
     {
         EScenes stage;

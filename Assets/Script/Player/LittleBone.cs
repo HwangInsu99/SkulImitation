@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LittleBone : Skul
 {
@@ -35,6 +35,7 @@ public class LittleBone : Skul
         AttackPosChange();
         _head.transform.SetParent(null);
         _head.transform.position = _headFire.transform.position;
+        SoundManager.Instance.PlaySfx(ESfxType.Sting);
         _head.gameObject.SetActive(true);
         _head.SetHead(_renderer.flipX ? -1 : 1, _skillCoolTime, Player.Instance.Attack);
     }
@@ -43,6 +44,7 @@ public class LittleBone : Skul
     {
         AttackPosChange();
         _attackCollider.enabled = true;
+        SoundManager.Instance.PlaySfx(ESfxType.Attack1);
     }
 
     public void AttackEnd()
@@ -64,6 +66,7 @@ public class LittleBone : Skul
     public void JumpAtkStart()
     {
         _jumpAtkCollider.enabled = true;
+        SoundManager.Instance.PlaySfx(ESfxType.Attack2);
     }
 
     public void JumpAtkEnd()

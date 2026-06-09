@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,6 +39,7 @@ public class Bomber : Skul
     public void SkillStart()
     {
         _skillCollider.enabled = true;
+        SoundManager.Instance.PlaySfx(ESfxType.Explosion);
     }
 
     public void SkillEnd()

@@ -3181,7 +3181,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1837609547
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -5569,7 +5569,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1797477741
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -6898,7 +6898,7 @@ SceneRoots:
   - {fileID: 1203515075}
   - {fileID: 1933643582}
   - {fileID: 3592507655683483840}
+  - {fileID: 3905276499501476127}
   - {fileID: 8713577228380226377}
   - {fileID: 5255265169226516744}
-  - {fileID: 3905276499501476127}
   - {fileID: 152512278}

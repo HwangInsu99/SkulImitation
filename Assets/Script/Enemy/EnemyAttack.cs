@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +6,7 @@ public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
     [SerializeField] private string _playerTag = "Player";
+    [SerializeField] private ESfxType _attackType;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -15,6 +16,7 @@ public class EnemyAttack : MonoBehaviour
             if (player != null)
             {
                 player.Damaged(_enemy.AttackDamage);
+                SoundManager.Instance.PlaySfx(_attackType);
             }
         }
     }

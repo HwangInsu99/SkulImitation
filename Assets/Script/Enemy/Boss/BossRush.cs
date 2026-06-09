@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +23,7 @@ public class BossRush : MonoBehaviour
             IDamagable player = other.GetComponentInParent<IDamagable>();
             if (player != null)
             {
+                SoundManager.Instance.PlaySfx(ESfxType.Hit_Blow);
                 player.Damaged(_boss.AttackDamage * _damageMultiply);
             }
         }

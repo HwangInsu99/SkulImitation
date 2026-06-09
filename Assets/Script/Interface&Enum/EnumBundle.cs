@@ -1,4 +1,4 @@
-public enum EScenes
+﻿public enum EScenes
 {
     Title,
     Catsle,
@@ -28,4 +28,27 @@ public enum EBgmType
 
 public enum ESfxType
 {
+    Hit_Blow,
+    Hit_Penetrate,
+    Hit_Slash,
+    Dash,
+    Explosion,
+    Jump,
+    Wolf_Skill,
+    Sting,
+    Attack1,
+    Attack2,
+    Archer_Fire,
+    Archer_Ready,
+    Knight_Attack,
+    Tank_Attack,
+    Tank_Tackle,
+    Boss_Die,
+    Boss_Rush,
+    Boss_Slash,
+    EBall_Explode,
+    Energy_Ball,
+    Potion,
+    Ultimate_Charge_Start,
+    Ultimate_Charge_End,
 }

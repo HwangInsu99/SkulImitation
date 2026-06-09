@@ -77,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2039581851
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5eca77831415e384180d8c708ff8e2e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mutiplyDamage: 2
+  _attackType: 2
 --- !u!1 &5341602473235131929
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80540f2ad3efe6147b1541fe080ad45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mutiplyDamage: 0
+  _mutiplyDamage: 1
+  _attackType: 2
 --- !u!1 &7032690903547672007
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,3 +450,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mutiplyDamage: 1
+  _attackType: 2

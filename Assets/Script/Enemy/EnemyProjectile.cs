@@ -1,10 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    // Á÷¼±À¸·Î ³¯¾Æ°¡´Â Åõ»çÃ¼
+    // ì§ì„ ìœ¼ë¡œ ë‚ ì•„ê°€ëŠ” íˆ¬ì‚¬ì²´
     [SerializeField] private string _playerTag = "Player";
     [SerializeField] private float _speed = 8;
     [SerializeField] private float _remainTime = 1.5f;
@@ -28,6 +28,7 @@ public class EnemyProjectile : MonoBehaviour
             if (player != null)
             {
                 player.Damaged(_damage);
+                SoundManager.Instance.PlaySfx(ESfxType.Hit_Penetrate);
             }            
         }
     }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -65,6 +65,7 @@ public class EnergyBall : MonoBehaviour
             {
                 _animator.SetTrigger(_hashExplode);
                 _isExplode = true;
+                SoundManager.Instance.PlaySfx(ESfxType.EBall_Explode);
                 player.Damaged(_boss.AttackDamage * _damageMultiply);
             }
         }

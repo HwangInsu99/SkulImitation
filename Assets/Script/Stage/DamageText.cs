@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -38,12 +38,20 @@ public class DamageText : MonoBehaviour
             ReturnPool();
             return;
         }
+        if (_cam == null)
+        {
+            return;
+        }
         _targetPos += Vector3.up * _riseSpeed * Time.deltaTime;
         transform.position = _cam.WorldToScreenPoint(_targetPos);
     }
 
     public void SetText(float damage, Vector3 pos)
     {
+        if (_cam == null)
+        {
+            return;
+        }
         _text.text = Mathf.RoundToInt(damage).ToString();
 
         Vector2 offset = Random.insideUnitCircle * 0.5f;

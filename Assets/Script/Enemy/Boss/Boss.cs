@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,7 +46,7 @@ public class Boss : MonoBehaviour, IDamagable
     [SerializeField] private float _comboDist = 1.5f;
     [SerializeField] private float _attack;
     [SerializeField] private float _maxHp;
-    [Header("µ¥¹ÌÁö ÅØ½ºÆ® yÃà À§Ä¡")]
+    [Header("ë°ë¯¸ì§€ í…ìŠ¤íŠ¸ yì¶• ìœ„ì¹˜")]
     [SerializeField] private Vector3 _offset;
 
     private int _hashCombo;
@@ -69,6 +69,7 @@ public class Boss : MonoBehaviour, IDamagable
     private Vector3 _originRushPos;
     private Vector3 _originMagicPos;
     private Vector3 _originUltimatePos;
+    private SoundManager _soundManager;
 
     public float AttackDamage => _attack;
     public float MaxHp => _maxHp;
@@ -96,6 +97,7 @@ public class Boss : MonoBehaviour, IDamagable
         _originRushPos = _rush.transform.localPosition;
         _originMagicPos = _eBallFirePoint.localPosition;
         _originUltimatePos = _ultimate.transform.localPosition;
+        _soundManager = SoundManager.Instance;
         ChangeState(EBState.Idle);
     }
 
@@ -173,7 +175,7 @@ public class Boss : MonoBehaviour, IDamagable
         _dir = Mathf.Sign(_target.position.x - transform.position.x);
         _renderer.flipX = _dir < 0;
         
-        // ÇÊ»ì±â
+        // í•„ì‚´ê¸°
         if (_hp / _maxHp <= 0.3f && !_useUltimate)
         {
             _animator.SetTrigger(_hashESlash);
@@ -181,7 +183,7 @@ public class Boss : MonoBehaviour, IDamagable
             return;
         }
 
-        // ÄÞº¸°ø°Ý
+        // ì½¤ë³´ê³µê²©
         if (Vector2.Distance(_target.position, transform.position) <= _comboDist)
         {
             _animator.SetTrigger(_hashCombo);
@@ -206,28 +208,29 @@ public class Boss : MonoBehaviour, IDamagable
             magic = 0.2f;
         }
 
-        // ±âº» °ø°Ý
+        // ê¸°ë³¸ ê³µê²©
         if (rand < attack)
         {
             ChangeState(EBState.Chase);
             _animator.SetBool(_hashMove, true);
         }
-        // ·¯½¬
+        // ëŸ¬ì‰¬
         else if (rand < attack + rush)
         {
             ChangeState(EBState.Active);
             AttackPosChange(EType.Rush);
+            _soundManager.PlaySfx(ESfxType.Boss_Rush);
             _animator.SetBool(_hashRush, true);
             _rush.enabled = true;
             _rb.velocity = new Vector2(_rushSpeed * _dir, _rb.velocity.y);
         }
-        // ¸¶¹ý
+        // ë§ˆë²•
         else if (rand < attack + rush + magic)
         {
             ChangeState(EBState.Active);
             _animator.SetTrigger(_hashMagic);
         }
-        // Æ÷¼Ç
+        // í¬ì…˜
         else
         {
             ChangeState(EBState.Active);
@@ -267,6 +270,7 @@ public class Boss : MonoBehaviour, IDamagable
     void Die()
     {
         _animator.SetBool(_hashDead, true);
+        _soundManager.PlaySfx(ESfxType.Boss_Die);
         ChangeState(EBState.Dead);
         _rb.simulated = false;
     }
@@ -275,6 +279,7 @@ public class Boss : MonoBehaviour, IDamagable
     {
         AttackPosChange(EType.Slash);
         _slash.enabled = true;
+        _soundManager.PlaySfx(ESfxType.Boss_Slash);
     }
 
     void SlashEnd()
@@ -286,18 +291,21 @@ public class Boss : MonoBehaviour, IDamagable
     {
         AttackPosChange(EType.Magic);
         _eBall.transform.localPosition = _eBallFirePoint.localPosition;
+        _soundManager.PlaySfx(ESfxType.Energy_Ball);
         _eBall.Fire(_target);
     }
 
     void UltimateCharge()
     {
         _effect.ChargeStart();
+        _soundManager.PlaySfx(ESfxType.Ultimate_Charge_Start);
     }
 
     void UltimateSlash()
     {
         AttackPosChange(EType.Ultimate);
         _effect.ChargeEnd();
+        _soundManager.PlaySfx(ESfxType.Ultimate_Charge_End);
         _ultimate.Fire(_dir);
     }
 
@@ -316,6 +324,7 @@ public class Boss : MonoBehaviour, IDamagable
     void UsePotion()
     {
         _hp += _maxHp / 2;
+        _soundManager.PlaySfx(ESfxType.Potion);
         HpChange?.Invoke(_hp);
         ActiveEnd();
     }

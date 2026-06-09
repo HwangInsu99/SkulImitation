@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ public abstract class Skul : MonoBehaviour
     [SerializeField] protected PlayerController _controller;
     [SerializeField] protected int _maxCombo = 2;
     [SerializeField] protected float _skillCoolTime;
-    [Header("1º¸´Ù Å©¸é ¹Ş´Â µ¥¹ÌÁö °¨¼Ò")]
+    [Header("1ë³´ë‹¤ í¬ë©´ ë°›ëŠ” ë°ë¯¸ì§€ ê°ì†Œ")]
     [SerializeField] protected float _skulArmorMul;
     [SerializeField] protected Sprite _headIcon;
     [SerializeField] protected Sprite _skillIcon;
@@ -129,7 +129,7 @@ public abstract class Skul : MonoBehaviour
         _animator.SetTrigger(_hashSkill);
     }
 
-    // ½ºÄÃ º¯°æ½Ã °ª À¯Áö¿ë ´Ù¸¥°Å Ãß°¡ÇØ¼­ ÇÔ¼öÀÌ¸§ ¹Ù²Ü ¿¹Á¤
+    // ìŠ¤ì»¬ ë³€ê²½ì‹œ ê°’ ìœ ì§€ìš© ë‹¤ë¥¸ê±° ì¶”ê°€í•´ì„œ í•¨ìˆ˜ì´ë¦„ ë°”ê¿€ ì˜ˆì •
     public virtual void SkulFlip(bool flip)
     {
         _renderer.flipX = flip;

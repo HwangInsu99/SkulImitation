@@ -1,4 +1,4 @@
-using TMPro;
+Ôªøusing TMPro;
 using UnityEngine;
 
 public class StageUINormal : MonoBehaviour
@@ -15,6 +15,6 @@ public class StageUINormal : MonoBehaviour
 
     void ChangeNum(int num)
     {
-        _remainText.text = "≥≤¿∫ ¿˚ : " + num.ToString();
+        _remainText.text = "ÎÇ®ÏùÄ Ï†Å : " + num.ToString();
     }
 }
